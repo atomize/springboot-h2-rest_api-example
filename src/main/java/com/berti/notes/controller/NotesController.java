@@ -48,13 +48,15 @@ public class NotesController {
             JSONParser parser = new JSONParser();
             Object object = parser.parse(payload);
             JSONObject jsonObject = (JSONObject) object;
-
+            // If 'id' in JSON payload is not null, get me the true int value of 'id' or set it to 0
             int i = jsonObject.get("id") != null ? Double.valueOf(jsonObject.get("id").toString()).intValue() : 0;
             String title = (String) jsonObject.get("title");
             String content = (String) jsonObject.get("content");
+            // If 'id' is greater than zero, we are updating an existing note
             if (i > 0) {
                 updatedID = i;
                 noteRepo.updateNote(i, title, content);
+            // If 'id' is 0 we are adding a new note
             } else {
                 added = noteRepo.addNote(title, content);
             }
