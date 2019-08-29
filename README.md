@@ -1,6 +1,7 @@
 # Spring Boot REST API with H2 Database
 
 A small example in the form of a note-taking application built using Spring Boot for the REST API with H2 for a database. Demonstrates elementary CRUD operations in response to HTTP as well as returning JSON.
+TODO:  FULL TESTS!
 ## Getting Started
 
 
