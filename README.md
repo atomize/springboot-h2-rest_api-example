@@ -1,7 +1,9 @@
 # Spring Boot REST API with H2 Database
 
 A small example in the form of a note-taking application built using Spring Boot for the REST API with H2 for a database. Demonstrates elementary CRUD operations in response to HTTP as well as returning JSON.
-TODO:  FULL TESTS!
+
+#### !!! TODO:  FULL TESTS !!!
+
 ## Getting Started
 
 
@@ -21,11 +23,20 @@ To test out this application, you need Maven to build the dependencies.
 ```sh
 mvn clean install
 ```
+### Running
 - Second, run the production build with live reload
 ```sh
 mvn spring-boot:run
 ```
 When the application is first built, it will create a database file in the directory specified in the ```application.properties``` file. 
+
+## * Testing *
+
+### Maven Tests
+```
+mvn test
+```
+### Curl Tests
 
 The notes API lives at the route ```/api/notes```. If your application is running on localhost:8080, you would access the API via http://localhost:8080/api/notes.
 ```json
