@@ -88,9 +88,9 @@ public class NotesController {
          * Technically, frontend could check for length to identify/resolve an error in deletion (non-existing note)
          * Orginally I was returning a string here with success or error - but thats not very REST-y
          */
-    @GetMapping("/api/notes/delete")
+    @PostMapping("/api/notes/delete")
     @ResponseBody
-    public List<Notes> deleteItem(@RequestParam("itemId") int itemId) {
+    public List<Notes> deleteItem(@RequestParam("id") int itemId) {
 
         try {
             if (noteRepo.deleteItem(itemId) >= 1) {
