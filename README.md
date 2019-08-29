@@ -41,8 +41,7 @@ BODY a note
 Returns: a saved note...
 Example
 ```curl
-curl -i -H "Content-Type: application/json" -X POST -d '{"body" : "Pick up milk!"}' h
-ttp://localhost/api/notes
+curl -i -H "Content-Type: application/json" -X POST -d '{"body" : "Pick up milk!"}' http://localhost:8080/api/notes
 ```
 Returns:
 ```json
@@ -58,7 +57,7 @@ GET /api/notes/{id}
 Returns: the requested note..
 Example:
 ```curl
-curl -i -H "Content-Type: application/json" -X GET http://localhost/api/notes/1
+curl -i -H "Content-Type: application/json" -X GET http://localhost:8080/api/notes/1
 ```
 Returns:
 ```json
@@ -76,7 +75,7 @@ Returns: A list of my notes
 Example:
 
 ```
-curl -i -H "Content-Type: application/json" -X GET http://localhost/api/notes
+curl -i -H "Content-Type: application/json" -X GET http://localhost:8080/api/notes
 ```
 Returns:
 ```json
@@ -94,7 +93,7 @@ Returns:
 To search notes by their bodies, use the 'query' parameter in the GET request
 Example:
 ```curl
-curl -i -H "Content-Type: application/json" -X GET http://localhost/api/notes?query=m
+curl -i -H "Content-Type: application/json" -X GET http://localhost:8080/api/notes?query=m
 ilk
 ```
 Returns a list of every note with the word 'milk' in it.
@@ -107,7 +106,7 @@ itemID int value of id to delete
 Returns: the updated list of notes...
 Example
 ```curl
-curl -i -H "Content-Type: application/json" -X POST  http://localhost/api/notes/delete?itemId=1
+curl -i -H "Content-Type: application/json" -X POST  http://localhost:8080/api/notes/delete?itemId=1
 ```
 
 ## Built With
