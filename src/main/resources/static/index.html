@@ -14,7 +14,7 @@
 <script>
     fetch('/api/notes').then(res => res.json()).then((notes) => {
         document.getElementById('root').innerHTML = (notes.map(note => {
-            return `<p>${note.id}----${note.title}<br>${note.content}<br></p>`
+            return `<p>${note.id}<br>${note.body}<br></p>`
         })).join("\t")
     })
 </script>

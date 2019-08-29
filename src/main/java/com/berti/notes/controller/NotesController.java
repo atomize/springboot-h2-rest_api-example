@@ -50,14 +50,14 @@ public class NotesController {
             JSONObject jsonObject = (JSONObject) object;
             // If 'id' in JSON payload is not null, get me the true int value of 'id' or set it to 0
             int i = jsonObject.get("id") != null ? Double.valueOf(jsonObject.get("id").toString()).intValue() : 0;
-            String content = (String) jsonObject.get("content");
+            String body = (String) jsonObject.get("body");
             // If 'id' is greater than zero, we are updating an existing note
             if (i > 0) {
                 updatedID = i;
-                noteRepo.updateNote(i, content);
+                noteRepo.updateNote(i, body);
             // If 'id' is 0 we are adding a new note
             } else {
-                added = noteRepo.addNote(content);
+                added = noteRepo.addNote(body);
             }
         } catch (Exception e) {
             return new Notes(null, "The note id " + updatedID + " does not exist.");
@@ -69,7 +69,7 @@ public class NotesController {
         } else {
             rs = noteRepo.lastNote();
         }
-        return new Notes(rs.getId(), rs.getContent());
+        return new Notes(rs.getId(), rs.getBody());
 
     }
 

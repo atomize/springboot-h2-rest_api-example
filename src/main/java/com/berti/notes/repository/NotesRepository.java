@@ -16,15 +16,15 @@ public class NotesRepository {
 
     /* Getting all */
     public List<Notes> getAllNotes() {
-        List<Notes> items = template.query("select id,content from NOTES", (result,
-                rowNum) -> new Notes(result.getLong("id"), result.getString("content")));
+        List<Notes> items = template.query("select id,body from NOTES", (result,
+                rowNum) -> new Notes(result.getLong("id"), result.getString("body")));
         return items;
     }
 
     /* Getting all name by query string */
     public List<Notes> getSearch(String search) {
-        List<Notes> items = template.query("SELECT * FROM NOTES WHERE content LIKE ?", (result,
-                rowNum) -> new Notes(result.getLong("id"), result.getString("content")),
+        List<Notes> items = template.query("SELECT * FROM NOTES WHERE body LIKE ?", (result,
+                rowNum) -> new Notes(result.getLong("id"), result.getString("body")),
                 "%" + search + "%");
         return items;
     }
@@ -32,35 +32,35 @@ public class NotesRepository {
     /* Getting by id */
     public Notes getNote(int search) {
         Notes items = template.queryForObject("SELECT * FROM NOTES WHERE ID=?", (result,
-                rowNum) -> new Notes(result.getLong("id"), result.getString("content")),
+                rowNum) -> new Notes(result.getLong("id"), result.getString("body")),
                 search);
         return items;
     }
 
     /* Adding into database table */
-    public int addNote(String content) {
-        String query = "INSERT INTO NOTES (content) VALUES(?)";
-        return template.update(query, content);
+    public int addNote(String body) {
+        String query = "INSERT INTO NOTES (body) VALUES(?)";
+        return template.update(query, body);
     }
 
     /** 
      * update a note or insert a note if tat ID doesn't exist
     */
-    public int updateNote(int id, String content) {
+    public int updateNote(int id, String body) {
         int q1 = 0;
         String checkid = "SELECT * FROM NOTES WHERE ID=?1";
-        String query = "INSERT INTO NOTES (content) VALUES(?2)";
-        String query2 = "UPDATE  NOTES SET CONTENT = ?2 WHERE ID = ?1";
-        Notes items = template.queryForObject(checkid, (result, rowNum) -> new Notes(result.getLong("id"), result.getString("content")), id);
-        System.out.println(items.getContent());
+        String query = "INSERT INTO NOTES (body) VALUES(?2)";
+        String query2 = "UPDATE  NOTES SET body = ?2 WHERE ID = ?1";
+        Notes items = template.queryForObject(checkid, (result, rowNum) -> new Notes(result.getLong("id"), result.getString("body")), id);
+        System.out.println(items.getBody());
 
-        if (items.getContent() != "") {
+        if (items.getBody() != "") {
             System.out.println(items);
 
-            q1 = template.update(query2, id, content);
+            q1 = template.update(query2, id, body);
         } else {
 
-            q1 = template.update(query, content);
+            q1 = template.update(query, body);
         }
         System.out.println(q1);
         return q1;
@@ -70,7 +70,7 @@ public class NotesRepository {
      */
     public Notes lastNote() {
         Notes items = template.queryForObject("SELECT * from NOTES WHERE id=(SELECT max(id) FROM NOTES)", (result,
-                rowNum) -> new Notes(result.getLong("id"), result.getString("content")));
+                rowNum) -> new Notes(result.getLong("id"), result.getString("body")));
         return items;
     }
 

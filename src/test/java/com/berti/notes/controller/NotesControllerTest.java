@@ -34,9 +34,9 @@ public class NotesControllerTest {
         Notes note1 = new Notes();
        Notes note2 = new Notes();
        note1.setId(Long.valueOf(1));
-        note1.setContent("This is a new note");
+        note1.setBody("This is a new note");
         note2.setId(Long.valueOf(2));
-        note2.setContent("This is a second new note");
+        note2.setBody("This is a second new note");
         List<Notes> notes = Arrays.asList(note1,note2);
         given(noteRepo.getAllNotes()).willReturn(notes);
 
