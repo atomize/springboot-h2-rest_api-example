@@ -3,15 +3,13 @@ package com.berti.notes.model;
 public class Notes {
 
     private Long id;
-    private String title;
     private String content;
 
     public Notes() {
     }
 
-    public Notes(Long id, String title, String content) {
+    public Notes(Long id, String content) {
         this.id = id;
-        this.title = title;
         this.content = content;
     }
 
@@ -23,13 +21,6 @@ public class Notes {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setName(String title) {
-        this.title = title;
-    }
 
     public String getContent() {
         return content;
@@ -41,6 +32,6 @@ public class Notes {
 
     @Override
     public String toString() {
-        return "Notes [id=" + id + ", title=" + title + ", content=" + content + "]";
+        return "Notes [id=" + id + ", content=" + content + "]";
     }
 }

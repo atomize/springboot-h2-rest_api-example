@@ -3,18 +3,16 @@
 A small example of a Spring Boot REST API with H2 for a database, demonstrating elementary CRUD operations in response to HTTP as well as returning JSON.
 ## Getting Started
 
-Clone this repository 
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
 
 ### Installing
-
+Make sure to edit your ```application.properties``` and change the database information to reflect where you would like H@ to create the DB file.
+It is currently set to the directly from which you are compiling the application.
+```sh
+spring.datasource.url=jdbc:h2:file:./notesDB
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=berti
+spring.datasource.password=
+```
 To test out this application, you need Maven to build the dependencies.
 
 - First, install the dependencies
