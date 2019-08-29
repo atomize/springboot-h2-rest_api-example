@@ -30,3 +30,4 @@ build/
 ### VS Code ###
 .vscode/
 bin
+notesDB.mv.db

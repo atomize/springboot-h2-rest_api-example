@@ -1,6 +1,6 @@
 # Spring Boot REST API with H2 Database
 
-A small example of a Spring Boot REST API with H2 for a database, demonstrating elementary CRUD operations in response to HTTP as well as returning JSON.
+A small example in the form of a note-taking application built using Spring Boot for the REST API with H2 for a database. Demonstrates elementary CRUD operations in response to HTTP as well as returning JSON.
 ## Getting Started
 
 
@@ -24,9 +24,91 @@ mvn clean install
 ```sh
 mvn spring-boot:run
 ```
+When the application is first built, it will create a database file in the directory specified in the ```application.properties``` file. 
 
-End with an example of getting some data out of the system or using it for a little demo
+The notes API lives at the route ```/api/notes```. If your application is running on localhost:8080, you would access the API via http://localhost:8080/api/notes.
+```json
+{
+ "id" : 1,
+ "body" : "Ask Larry about the TPS reports."
+}
+```
+To create a new note, post a JSON payload to the API endpoint as modeled below:
+```curl
+POST /api/notes
+BODY a note
+```
+Returns: a saved note...
+Example
+```curl
+curl -i -H "Content-Type: application/json" -X POST -d '{"body" : "Pick up milk!"}' h
+ttp://localhost/api/notes
+```
+Returns:
+```json
+{
+ "id" : 2,
+ "body" : "Pick up milk!"
+}
+```
+Get a note using an API call:
+```
+GET /api/notes/{id}
+```
+Returns: the requested note..
+Example:
+```curl
+curl -i -H "Content-Type: application/json" -X GET http://localhost/api/notes/1
+```
+Returns:
+```json
+{
+ "id" : 1,
+ "body" : "Ask Larry about the TPS reports."
+}
+```
+I can get all notes using an API call:
+```
+GET /api/notes
+```
+Returns: A list of my notes
 
+Example:
+
+```
+curl -i -H "Content-Type: application/json" -X GET http://localhost/api/notes
+```
+Returns:
+```json
+[
+ {
+ "id" : 2,
+ "body" : "Pick up milk!"
+ },
+ {
+ "id" : 1,
+ "body" : "Ask Larry about the TPS reports."
+ }
+]
+```
+To search notes by their bodies, use the 'query' parameter in the GET request
+Example:
+```curl
+curl -i -H "Content-Type: application/json" -X GET http://localhost/api/notes?query=m
+ilk
+```
+Returns a list of every note with the word 'milk' in it.
+
+To delete an individual note use the endpoint ```/api/notes/delete``` with a parameter of 'itemId' signifying the note you wish to remove.
+```curl
+POST /api/notes/delete
+itemID int value of id to delete
+```
+Returns: the updated list of notes...
+Example
+```curl
+curl -i -H "Content-Type: application/json" -X POST  http://localhost/api/notes/delete?itemId=1
+```
 
 ## Built With
 
