@@ -6,7 +6,7 @@ TODO:  FULL TESTS!
 
 
 ### Installing
-Make sure to edit your ```application.properties``` and change the database information to reflect where you would like H@ to create the DB file.
+Make sure to edit your ```application.properties``` and change the database information to reflect where you would like H2 to create the DB file.
 It is currently set to the directly from which you are compiling the application.
 ```sh
 spring.datasource.url=jdbc:h2:file:./notesDB
@@ -94,12 +94,11 @@ Returns:
 To search notes by their bodies, use the 'query' parameter in the GET request
 Example:
 ```curl
-curl -i -H "Content-Type: application/json" -X GET http://localhost:8080/api/notes?query=m
-ilk
+curl -i -H "Content-Type: application/json" -X GET http://localhost:8080/api/notes?query=milk
 ```
 Returns a list of every note with the word 'milk' in it.
 
-To delete an individual note use the endpoint ```/api/notes/delete``` with a parameter of 'itemId' signifying the note you wish to remove.
+To delete an individual note use the endpoint ```/api/notes/delete``` with a parameter of 'id' signifying the note you wish to remove.
 ```curl
 POST /api/notes/delete
 ID int value of id to delete
