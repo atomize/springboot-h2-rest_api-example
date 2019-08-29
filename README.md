@@ -101,12 +101,12 @@ Returns a list of every note with the word 'milk' in it.
 To delete an individual note use the endpoint ```/api/notes/delete``` with a parameter of 'itemId' signifying the note you wish to remove.
 ```curl
 POST /api/notes/delete
-itemID int value of id to delete
+ID int value of id to delete
 ```
 Returns: the updated list of notes...
 Example
 ```curl
-curl -i -H "Content-Type: application/json" -X POST  http://localhost:8080/api/notes/delete?itemId=1
+curl -i -H "Content-Type: application/json" -X POST  http://localhost:8080/api/notes/delete?id=1
 ```
 
 ## Built With
