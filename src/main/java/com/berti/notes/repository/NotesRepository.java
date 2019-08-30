@@ -47,23 +47,17 @@ public class NotesRepository {
      * update a note or insert a note if tat ID doesn't exist
     */
     public int updateNote(int id, String body) {
-        int q1 = 0;
         String checkid = "SELECT * FROM NOTES WHERE ID=?1";
-        String query = "INSERT INTO NOTES (body) VALUES(?2)";
-        String query2 = "UPDATE  NOTES SET body = ?2 WHERE ID = ?1";
+        String insertion = "INSERT INTO NOTES (body) VALUES(?2)";
+        String updated = "UPDATE  NOTES SET body = ?2 WHERE ID = ?1";
         Notes items = template.queryForObject(checkid, (result, rowNum) -> new Notes(result.getLong("id"), result.getString("body")), id);
-        System.out.println(items.getBody());
-
+        //if the body of the note we tried to get does isn't empty, do updated, otherwise, do insertion
         if (items.getBody() != "") {
-            System.out.println(items);
-
-            q1 = template.update(query2, id, body);
+            return template.update(updated, id, body);
         } else {
-
-            q1 = template.update(query, body);
+           return template.update(insertion, body);
         }
-        System.out.println(q1);
-        return q1;
+       
     }
     /**
      *  get the last note
